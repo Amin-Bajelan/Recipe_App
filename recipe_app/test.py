@@ -1,12 +1,11 @@
-from django.test import testcases
-
+from django.test import SimpleTestCase
 from .calc import add_two_number
 
-class TestFunctioAdd(testcases):
+class TestFunctioAdd(SimpleTestCase):
     
     def test_function(self):
-        num1 = 10
-        num2 = 7
-        result = add_two_number(num1,num2)
-        
-        self.assertequal(result,17)
+        result = add_two_number(7, 10) 
+        self.assertEqual(result,17)
+    def test_wrong_num(self):
+        result = add_two_number(1,7)
+        self.assertNotEqual(result,2)

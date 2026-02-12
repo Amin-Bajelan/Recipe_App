@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from .get_env import get_my_env
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--7joqw@223cwc_1550h4g%$3r@@j04!!(g$^r)cv=18!_35x$9'
+SECRET_KEY = get_my_env("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = get_my_env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [get_my_env("DJANGO_ALLOWED_HOSTS")]
 
 
 # Application definition
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -68,20 +72,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'recipe_app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import os
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": os.getenv("POSTGRES_PORT"),
+        "NAME": get_my_env("POSTGRES_DB"),
+        "USER": get_my_env("POSTGRES_USER"),
+        "PASSWORD": get_my_env("POSTGRES_PASSWORD"),
+        "HOST": get_my_env("POSTGRES_HOST"),
+        "PORT": get_my_env("POSTGRES_PORT"),
     }
 }
 
