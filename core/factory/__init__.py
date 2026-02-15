@@ -1,0 +1,1 @@
+from core.factory.user import UserFactory
