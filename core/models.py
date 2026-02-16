@@ -36,7 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=255,null=False, blank=False,verbose_name="emial address:")
     name = models.CharField(max_length=255, verbose_name="full name:")
     is_active = models.BooleanField(default=True,verbose_name="is active:")
-    is_staff = models.BooleanField(default=False,verbose_name="is_staff")
+    is_staff = models.BooleanField(default=False,verbose_name="is staff:")
     date_joined = models.DateTimeField(default=timezone.now,verbose_name="created time:")
     # if you use deafult+timezone.now it can be override after create
     # else if you use auto_now_add=True it can't override after create

@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,29 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = "core.User"
+
+
+#setup jazzmin (custom admin panel)
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Control Panel",
+    "site_header": "Project Admin",
+    "site_brand": "MyProject",
+    "welcome_sign": "Welcome to Professional Admin",
+    "site_logo": None,
+    "copyright": "MyCompany Ltd",
+    "search_model": "accounts.User",
+
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+
+    "icons": {
+        "accounts.User": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+}
+
